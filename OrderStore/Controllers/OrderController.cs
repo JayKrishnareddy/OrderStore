@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrderStore.Domain.Interfaces;
+using OrderStore.Domain.Models;
 using System.Threading.Tasks;
 
 namespace OrderStore.Controllers
@@ -18,7 +19,15 @@ namespace OrderStore.Controllers
         [HttpGet(nameof(GetOrders))]
         public async Task<IActionResult> GetOrders() => Ok(await _unitOfWork.Orders.GetAll());
 
-        [HttpGet(nameof(GetByGenre))]
-        public IActionResult GetByGenre([FromQuery] string Genre) => Ok(_unitOfWork.Orders.GetOrdersByGenre(Genre));
+        [HttpGet(nameof(GetOrderByName))]
+        public async Task<IActionResult> GetOrderByName([FromQuery] string Genre) => Ok(await _unitOfWork.Orders.GetOrdersByOrderName(Genre));
+
+        [HttpPost(nameof(CreateOrder))]
+        public IActionResult CreateOrder(Order order)
+        {
+            var result =_unitOfWork.Orders.Add(order);
+            if (result is not null) return Ok(result);
+            else return BadRequest(result);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace OrderStore.Repository
 {
@@ -14,9 +15,9 @@ namespace OrderStore.Repository
         {
 
         }
-        public IEnumerable<Order> GetOrdersByGenre(string orderName)
+        public async Task<IEnumerable<Order>> GetOrdersByOrderName(string orderName)
         {
-            return _context.Orders.Where(x => x.OrderDetails == orderName);
+            return await _context.Orders.Where(c=>c.OrderDetails.Contains(orderName)).ToListAsync();
         }
     }
 }
