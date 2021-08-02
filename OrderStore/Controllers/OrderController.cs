@@ -21,13 +21,6 @@ namespace OrderStore.Controllers
 
         [HttpGet(nameof(GetOrderByName))]
         public async Task<IActionResult> GetOrderByName([FromQuery] string Genre) => Ok(await _unitOfWork.Orders.GetOrdersByOrderName(Genre));
-
-        [HttpPost(nameof(CreateOrder))]
-        public IActionResult CreateOrder(Order order)
-        {
-            var result =_unitOfWork.Orders.Add(order);
-            if (result is not null) return Ok(result);
-            else return BadRequest(result);
-        }
+       
     }
 }
