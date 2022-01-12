@@ -22,3 +22,5 @@
 If you want to learn more about this Article 👇🏻
 
 [**C# Corner**](https://www.c-sharpcorner.com/article/implementing-unit-of-work-and-repository-pattern-with-dependency-injection-in-n/ "C# Corner")
+
+[**Medium**](https://jaykrishnareddy.medium.com/implementing-unit-of-work-and-repository-pattern-with-dependency-injection-in-net-5-7549d8bbbcd7 "Medium")
